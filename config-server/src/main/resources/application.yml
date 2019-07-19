@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/liuqi368/config-server.git
+          username: liuqi368
+          password: liu1058958031
+          search-paths: /**
+
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8758/eureka/

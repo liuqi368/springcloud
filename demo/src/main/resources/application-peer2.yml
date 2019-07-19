@@ -1,0 +1,15 @@
+# yml中的加入如下配置：registerWithEureka 和 fetchRegistry 设置为false，表明自己属于服务中心主体
+server:
+  port: 8759
+
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://peer1:8758/eureka/
+spring:
+  application:
+    name: service-peer
