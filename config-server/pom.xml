@@ -18,6 +18,7 @@
 
 	<!--子模块的个性化依赖-->
 	<dependencies>
+		<!--Spring Cloud Config 服务端依赖-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
