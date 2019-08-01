@@ -18,7 +18,10 @@
 
 	<!--子模块的个性化依赖-->
 	<dependencies>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

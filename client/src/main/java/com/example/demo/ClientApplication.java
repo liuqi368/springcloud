@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,13 @@ import java.util.Map;
 @EnableEurekaClient
 @RestController
 public class ClientApplication {
+
+	/**
+	 * 注入AmqpTemplate
+	 */
+	@Autowired
+	private AmqpTemplate rabbitTemplate;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClientApplication.class, args);
@@ -51,4 +60,9 @@ public class ClientApplication {
 		return name+port;
 	}
 
+	@RequestMapping("/sendMessage")
+	public void sendMessage(){
+		//发送消息
+		this.rabbitTemplate.convertAndSend("hello","你好,rabbitmq");
+	}
 }

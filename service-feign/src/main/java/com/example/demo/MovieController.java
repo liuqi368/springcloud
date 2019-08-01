@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/movies")
 @RestController
 public class MovieController {
+
+    private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
+
     @Autowired
     UserFeignClient userFeignClient;
 
@@ -47,4 +53,14 @@ public class MovieController {
     public String findUser(){
         return this.userFeignClient.findUser("152");
     };
+
+    /**
+     * 消息接受
+     * @param message
+     */
+    @RabbitListener(queues = "hello")  //监听器监听指定的QueueName
+    public void receive(String message) {
+        System.out.println("接收消息:" + message);
+    }
+
 }
